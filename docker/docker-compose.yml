@@ -1,14 +1,4 @@
 services:
-  postgres:
-    restart: unless-stopped
-    image: postgres:14
-    hostname: postgres
-    volumes:
-      - semaphore-postgres:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: semaphore
-      POSTGRES_PASSWORD: semaphorepassword
-      POSTGRES_DB: semaphore
   semaphore:
     ports:
       - 3000:3000
@@ -29,7 +19,3 @@ services:
       SEMAPHORE_ACCESS_KEY_ENCRYPTION: L8JS/duN93usMpMt0O5N9UHLGWosQR3fiZ2zukx4gpk= 
       SEMAPHORE_LDAP_ACTIVATED: 'no'
       TZ: UTC+1
-    depends_on:
-      - postgres
-volumes:
-  semaphore-postgres:
