@@ -1,0 +1,36 @@
+---
+
+- name: Get latest semaphore release
+  uri:
+    url: https://api.github.com/repos/semaphoreui/semaphore/releases/lastest
+      return_content: true
+  register: semaphore_latest
+
+- name: Install semaphore {{ semaphore_lastest.tag_name }}
+  loop: "{{ semaphore_latest.json.assets }}"
+  when: "'amd64.rpm' in item.name"
+  dnf:
+    name: "{{ item.browser_download_url }}"
+    state: latest
+
+- name: Add semaphore service
+  copy:
+    src: semaphore.service
+    dest: /etc/systemd/system/semaphore.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Add semaphore config
+  copy:
+    src: config.json
+    dest: /opt/binero/semaphore/config.json
+    owner: semaphore
+    group: semaphore
+
+- name: Register and enable service
+  systemd_service:
+    state: started
+    daemon_reload: true
+    enabled: true
+    name: semaphore

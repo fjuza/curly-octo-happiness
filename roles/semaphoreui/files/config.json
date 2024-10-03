@@ -1,0 +1,14 @@
+{
+    "mysql": {
+        "host": "127.0.0.1:3306",
+        "user": "semaphore",
+        "pass": "somepassword1",
+        "name": "semaphore"
+    },
+    "dialect": "mysql",
+    "tmp_path": "/opt/semaphore",
+    "web_host": "semaphore.binero.net",
+    "cookie_hash": "EfhwkCSL8KKqmsJAZ7sfJBXzmHF2/r+w5GaM6qWx+Fc=",
+    "cookie_encryption": "YGxiMe9ik1RJ2Bq7g7gTcqgwqoKG6LgVnbNd2g7KZsQ=",
+    "access_key_encryption": "pGVDSNxFInI1MXrPr/58YQTtYIk+ZS++LR/UiXtR02g="
+}

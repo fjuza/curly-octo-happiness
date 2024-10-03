@@ -5,3 +5,30 @@
     name: mysql-server
     state: present
 
+- name: Enable MySQL-server
+  systemd_service:
+    state: started
+    enabled: true
+    name: mysqld
+
+- name: Create semaphore db
+  mysql_db:
+    name: semaphore
+    state: present
+
+- name: Create semaphore user
+  mysql_user:
+    name: semaphore
+    password: "{{ mysql_password }}"
+    host: localhost
+    priv:
+      'semaphore.*:ALL'
+    state: present
+
+- name: Create mgmt user
+  mysql_user:
+    name: management
+    host: bastion.novalocal
+    priv:
+      '*.*:ALL,GRANT'
+    state: present
