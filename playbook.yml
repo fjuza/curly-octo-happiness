@@ -1,0 +1,11 @@
+---
+
+- name: mysql
+  hosts: localhost
+  roles:
+    - mysql
+
+- name: semaphore install
+  hosts: localhost
+  roles:
+    - semaphoreui
