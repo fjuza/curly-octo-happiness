@@ -1,4 +1,7 @@
 ---
+- name: Install community.mysql requirements
+  pip:
+    name: PyMySQL
 
 - name: Install MySQL Server
   package:
