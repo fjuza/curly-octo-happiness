@@ -24,11 +24,14 @@
 
 - name: ensure directories exists.
   file:
-    path: /opt/binero/semaphore/
-    state: directory
+    path: "/opt/{{ item.0 }}" 
+    state: "{{ item.1 }}"
     owner: root
     group: root
     mode: '0644'
+  loop:
+    - [binero, directory]
+    - [binero/semaphore, directory]
 
 - name: Add semaphore config
   copy:
