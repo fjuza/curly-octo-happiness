@@ -1,4 +1,13 @@
 ---
+- name: Create semaphore group
+  group:
+    name: semaphore
+
+- name: Create semaphore user
+  user:
+    name: semaphore
+    state: present
+    groups: semaphore
 
 - name: Get latest semaphore release
   uri:
