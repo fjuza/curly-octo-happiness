@@ -22,6 +22,14 @@
     group: root
     mode: '0644'
 
+- name: ensure directories exists.
+  file:
+    path: /opt/binero/semaphore/
+    state: directory
+    owner: root
+    group: root
+    mode: '0644'
+
 - name: Add semaphore config
   copy:
     src: config.json
