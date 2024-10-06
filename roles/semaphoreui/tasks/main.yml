@@ -12,6 +12,7 @@
   dnf:
     name: "{{ item.browser_download_url }}"
     state: latest
+    disable_gpg_check: true
 
 - name: Add semaphore service
   copy:
