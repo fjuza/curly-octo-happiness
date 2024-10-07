@@ -9,6 +9,12 @@
     enabled: true
     state: started
 
+- name: allow 443 seboolean
+  seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+
 - name: Add certificate
   copy:
     src: semaphore.crt
