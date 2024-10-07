@@ -1,0 +1,45 @@
+- name: Ensure nginx is installed.
+  package: 
+    name: nginx
+    state: latest
+
+- name: Enable service
+  systemd_service:
+    name: nginx
+    enabled: true
+    state: started
+
+- name: Add certificate
+  copy:
+    src: semaphore.crt
+    dest: /etc/ssl/certs/semaphore.crt
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Create directory for key
+  file:
+    path: /etc/ssl/private
+    state: directory
+    owner: root
+    group: root
+    mode: '0655'
+
+- name: Add key
+  copy:
+    src: semaphore.key
+    dest: /etc/ssl/private/semaphore.key
+    decrypt: true
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: apply configuration
+  copy:
+    src: semaphore.conf
+    dest: /etc/nginx/conf.d/semaphore.conf
+    owner: nginx
+    group: nginx
+    mode: '0644'
+  notify: restart nginx
+
