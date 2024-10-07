@@ -1,11 +1,12 @@
 ---
 
 - name: mysql
-  hosts: localhost
+  hosts: semaphore
   roles:
     - mysql
 
 - name: semaphore install
-  hosts: localhost
+  hosts: semaphore
   roles:
     - semaphoreui
+    - nginx_proxy
